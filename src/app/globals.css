@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ /* *{
+  background-color: rgb(2 6 23) ; */
+ 
+
+@keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  nav {
+    animation: float 3s ease-in-out infinite;
+  }
+  :root {
+    --ball-color: #9933ff; /* Purple color */
+    --ball-hover-glow: rgba(150, 50, 255, 0.9); /* Bright purple glow on hover */
+  }
+  
+  .ball-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    perspective: 1500px;
+    overflow: hidden;
+  }
+  
+  .ball {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--ball-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(150, 50, 255, 0.5), 0 0 15px rgba(150, 50, 255, 0.3); /* Initial glow */
+    opacity: 0.85;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, opacity;
+  }
+  
+  .ball:hover {
+    box-shadow: 0 0 20px var(--ball-hover-glow), 0 0 30px var(--ball-hover-glow);
+    transform: scale(1.5);
+    cursor: pointer;
+  }
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.6);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(0, 255, 0, 1), 0 0 30px rgba(0, 255, 0, 0.8);
+    }
+  }
+  
+  @keyframes ring-glow {
+    0% {
+      transform: scale(0.5);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  /* Green circle glow */
+  .relative.w-6.h-6.bg-green-500.rounded-full {
+    animation: glow 1.5s infinite alternate;
+  }
+  
+  /* White rings */
+  .relative.w-6.h-6.bg-green-500.rounded-full span {
+    position: absolute;
+    animation: ring-glow 1.5s infinite ease-in-out;
+  }
+  .relative.w-6.h-6.bg-green-500.rounded-full span:last-child {
+    animation-delay: 0.75s;
+  }
+  @keyframes glowing-border {
+    0% {
+      border-color: rgba(34, 197, 94, 0.5);
+      box-shadow: 0 0 5px rgba(34, 197, 94, 0.5), 0 0 10px rgba(34, 197, 94, 0.4);
+    }
+    50% {
+      border-color: rgba(34, 197, 94, 1);
+      box-shadow: 0 0 20px rgba(34, 197, 94, 1), 0 0 40px rgba(34, 197, 94, 0.6);
+    }
+    100% {
+      border-color: rgba(34, 197, 94, 0.5);
+      box-shadow: 0 0 5px rgba(34, 197, 94, 0.5), 0 0 10px rgba(34, 197, 94, 0.4);
+    }
+  }
+  
+  .animate-glowing-border {
+    animation: glowing-border 3s infinite ease-in-out;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 2s ease-in infinite;
+  }
+  
+  
+  @layer utilities {
+    .container{
+      @apply lg:max-w-5xl
+    }
+  }
+  html {
+    scroll-behavior: smooth;
+  }
